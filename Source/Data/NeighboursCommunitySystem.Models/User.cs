@@ -11,8 +11,8 @@
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class User : IdentityUser
     {
-        private HashSet<Tax> taxes;
-        private HashSet<Proposal> proposals;
+        private ICollection<Tax> taxes;
+        private ICollection<Proposal> proposals;
 
         public User()
         {
@@ -42,13 +42,13 @@
         public virtual ICollection<Tax> Taxes
         {
             get { return this.taxes; }
-            set { this.taxes = (HashSet<Tax>)value; }
+            set { this.taxes = value; }
         }
 
         public virtual ICollection<Proposal> Proposals
         {
             get { return this.proposals; }
-            set { this.proposals = (HashSet<Proposal>)value; }
+            set { this.proposals = value; }
         }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager, string authenticationType)

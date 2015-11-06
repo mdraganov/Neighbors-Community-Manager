@@ -7,7 +7,7 @@
 
     public class Tax
     {
-        private HashSet<User> users;
+        private ICollection<User> users;
         private DateTime deadline;
 
         public Tax()
@@ -15,9 +15,7 @@
             this.users = new HashSet<User>();
         }
 
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ID { get; set; }
+        public int Id { get; set; }
 
         [Required]
         [MaxLength(200)]
