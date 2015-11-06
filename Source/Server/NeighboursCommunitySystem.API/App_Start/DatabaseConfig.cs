@@ -9,7 +9,7 @@
         public static void Initialize()
         {
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<NeighboursCommunityDbContext, Configuration>());
-            //NeighboursCommunityDbContext.Create().Database.Initialize(true);
+            NeighboursCommunityDbContext.Create().Database.Initialize(true);
         }
     }
 }
