@@ -15,7 +15,7 @@ namespace NeighboursCommunitySystem.Data.Migrations
             this.ContextKey = "NeighboursCommunitySystem.Data.NeighboursCommunityDbContext";
         }
 
-        protected override void Seed(NeighboursCommunityDbContext context)
+        protected async override void Seed(NeighboursCommunityDbContext context)
         {
             // ADMIN BUTTON -> CONTROL PANNEL
 
@@ -25,8 +25,8 @@ namespace NeighboursCommunitySystem.Data.Migrations
             var adminRole = new IdentityRole { Name = "Administrator" };
             var accountantRole = new IdentityRole { Name = "Accountant" };
 
-            roleManager.Create(adminRole);
-            roleManager.Create(accountantRole);
+            await roleManager.CreateAsync(adminRole);
+            await roleManager.CreateAsync(accountantRole);
 
             var userStore = new UserStore<User>(context);
             var userManager = new UserManager<User>(userStore);
@@ -39,6 +39,7 @@ namespace NeighboursCommunitySystem.Data.Migrations
                 FirstName = "Archer",
                 LastName = "Jr",
                 PhoneNumber = "0887482921",
+                ApartmentNumber = 1
             };
 
             var accountant = new User()
@@ -49,13 +50,16 @@ namespace NeighboursCommunitySystem.Data.Migrations
                 FirstName = "Cyril",
                 LastName = "Figgis",
                 PhoneNumber = "0883333312",
+                ApartmentNumber = 2
             };
 
-            userManager.Create(admin);
-            userManager.Create(accountant);
+            await userManager.CreateAsync(admin, "123456");
+            await userManager.CreateAsync(accountant, "123456");
 
-            userManager.AddToRole(admin.Id, "Administrator");
-            userManager.AddToRole(accountant.Id, "Accountant");
+            await userManager.AddToRoleAsync(admin.Id, "Administrator");
+            await userManager.AddToRoleAsync(accountant.Id, "Accountant");
+
+            await context.SaveChangesAsync();
         }
     }
 }
