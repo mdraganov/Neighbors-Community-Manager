@@ -335,7 +335,7 @@
                 Email = model.Email,
                 FirstName = model.FirstName,
                 LastName = model.LastName,
-                AppartmentNumber = model.AppartmentNumber
+                ApartmentNumber = model.ApartmentNumber
             };
 
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);

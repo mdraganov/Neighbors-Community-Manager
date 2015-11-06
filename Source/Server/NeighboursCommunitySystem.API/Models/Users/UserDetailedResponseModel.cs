@@ -11,7 +11,7 @@
 
         public string LastName { get; set; }
 
-        public byte AppartmentNumber { get; set; }
+        public byte ApartmentNumber { get; set; }
 
         public IEnumerable<Tax> Taxes { get; set; }
 

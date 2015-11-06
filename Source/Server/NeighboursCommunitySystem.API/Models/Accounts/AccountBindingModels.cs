@@ -60,7 +60,7 @@
 
         [Required]
         [Display(Name = "Appartament Number")]
-        public byte AppartmentNumber { get; set; }
+        public byte ApartmentNumber { get; set; }
     }
 
     public class RegisterExternalBindingModel

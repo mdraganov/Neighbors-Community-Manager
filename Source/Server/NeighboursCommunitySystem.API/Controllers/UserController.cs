@@ -7,6 +7,7 @@
 
     public class UserController : ApiController
     {
+        // Just for testing purposes - will be fixed.
         public IHttpActionResult GetAll()
         {
             var db = new NeighboursCommunityDbContext();
@@ -17,7 +18,7 @@
                     Email = x.Email,
                     FirstName = x.FirstName,
                     LastName = x.LastName,
-                    AppartmentNumber = x.AppartmentNumber,
+                    ApartmentNumber = x.ApartmentNumber,
                     Proposals = x.Proposals,
                     Taxes = x.Taxes
                 })

@@ -37,7 +37,7 @@
 
         [Required]
         [Index(IsUnique = true)]
-        public byte AppartmentNumber { get; set; }
+        public byte ApartmentNumber { get; set; }
 
         public virtual ICollection<Tax> Taxes
         {

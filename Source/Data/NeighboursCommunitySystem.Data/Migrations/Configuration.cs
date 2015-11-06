@@ -14,7 +14,8 @@ namespace NeighboursCommunitySystem.Data.Migrations
 
         protected override void Seed(NeighboursCommunityDbContext context)
         {
-            // TODO: SEED ADMIN ROLES LATER
+            // TODO: SEED ADMIN ROLES LATER (tenants council)
+            // ADMIN BUTTON -> CONTROL PANNEL
         }
     }
 }
