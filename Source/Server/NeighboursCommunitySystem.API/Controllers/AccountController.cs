@@ -18,6 +18,7 @@
     using NeighboursCommunitySystem.Models;
     using Providers;
     using Results;
+    using Models.Accounts;
 
     [Authorize]
     [RoutePrefix("api/Account")]

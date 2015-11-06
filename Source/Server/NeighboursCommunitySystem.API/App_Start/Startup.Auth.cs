@@ -1,13 +1,13 @@
 ﻿namespace NeighboursCommunitySystem.API
 {
     using System;
-    using Data;
     using Microsoft.AspNet.Identity;
     using Microsoft.Owin;
     using Microsoft.Owin.Security.Cookies;
     using Microsoft.Owin.Security.OAuth;
     using Owin;
     using Providers;
+    using Data.DbContexts;
 
     public partial class Startup
     {

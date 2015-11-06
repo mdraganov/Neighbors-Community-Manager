@@ -1,7 +1,7 @@
 ﻿namespace NeighboursCommunitySystem.API
 {
-    using Data;
     using Data.Migrations;
+    using Data.DbContexts;
     using System.Data.Entity;
 
     public static class DatabaseConfig

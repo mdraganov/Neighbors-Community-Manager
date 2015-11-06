@@ -17,12 +17,14 @@
         public User()
         {
             this.taxes = new HashSet<Tax>();
+            this.proposals = new HashSet<Proposal>();
         }
 
         public User(string userName)
             : base(userName)
         {
             this.taxes = new HashSet<Tax>();
+            this.proposals = new HashSet<Proposal>();
         }
 
         [Required]

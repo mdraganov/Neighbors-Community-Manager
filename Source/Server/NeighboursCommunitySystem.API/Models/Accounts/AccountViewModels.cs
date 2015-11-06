@@ -1,4 +1,4 @@
-﻿namespace NeighboursCommunitySystem.API.Models
+﻿namespace NeighboursCommunitySystem.API.Models.Accounts
 {
     using System.Collections.Generic;
 

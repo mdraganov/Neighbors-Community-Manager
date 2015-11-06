@@ -3,10 +3,12 @@
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
 
     public class Tax
     {
         private HashSet<User> users;
+        private DateTime deadline;
 
         public Tax()
         {
@@ -14,6 +16,7 @@
         }
 
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
 
         [Required]
@@ -25,9 +28,23 @@
 
         public bool IsPaid { get; set; }
 
-        // TODO: Set restriction for deadline to range from (DateTime.Now to DateTime.SomeDateInTheFuture(DateTime.Now.AddDays(60).Date for example)
         [Required]
-        public DateTime Deadline { get; set; }
+        public DateTime Deadline
+        {
+            get
+            {
+                return this.deadline;
+            }
+            set
+            {
+                if (value.Date.CompareTo(DateTime.Now.AddDays(1).Date) <= 0)
+                {
+                    throw new ArgumentOutOfRangeException("The deadline must be atleast 24 hours further in the future counting from the current day.");
+                }
+
+                this.deadline = value;
+            }
+        }
 
         public virtual ICollection<User> Users
         {

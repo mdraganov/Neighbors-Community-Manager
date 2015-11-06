@@ -1,5 +1,6 @@
 namespace NeighboursCommunitySystem.Data.Migrations
 {
+    using DbContexts;
     using System.Data.Entity.Migrations;
 
     public sealed class Configuration : DbMigrationsConfiguration<NeighboursCommunityDbContext>
