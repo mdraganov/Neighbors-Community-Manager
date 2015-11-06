@@ -1,12 +1,9 @@
-﻿namespace NeighboursCommunitySystem.Services
+﻿namespace NeighboursCommunitySystem.Services.Services
 {
-    using System;
-    using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-    using NeighboursCommunitySystem.Data.Repositories;
-    using NeighboursCommunitySystem.Models;
+    using Data.Repositories;
+    using Models;
+    using Contracts;
 
     public class ProposalService : IProposalService
     {
