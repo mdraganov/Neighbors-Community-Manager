@@ -68,6 +68,7 @@ namespace NeighboursCommunitySystem.API.App_Start
 
             kernel.Bind<INeighboursCommunityDbContext>().To<NeighboursCommunityDbContext>().InRequestScope();
             kernel.Bind(typeof(IRepository<>)).To(typeof(EfGenericRepository<>));
+
             kernel.Bind(k => k
                 .From("NeighboursCommunitySystem.Services.Data")
                 .SelectAllClasses()

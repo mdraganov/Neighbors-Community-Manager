@@ -5,7 +5,7 @@
     using System.Linq;
     using Models;
 
-    public class ProposalService : IProposalsService
+    public class ProposalService : IProposalService
     {
         private readonly IRepository<Proposal> proposals;
 
