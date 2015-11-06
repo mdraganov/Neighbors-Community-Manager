@@ -176,6 +176,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ProposalsController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -212,6 +213,10 @@
     <ProjectReference Include="..\..\Data\NeighboursCommunitySystem.Models\NeighboursCommunitySystem.Models.csproj">
       <Project>{189575a1-8aaf-4173-b025-b0016db2fb8a}</Project>
       <Name>NeighboursCommunitySystem.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\NeighboursCommunitySystem.Services\NeighboursCommunitySystem.Services.csproj">
+      <Project>{8dcaa82f-bb5e-43d9-a5df-f748429b66c8}</Project>
+      <Name>NeighboursCommunitySystem.Services</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
