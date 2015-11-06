@@ -1,6 +1,5 @@
 ﻿namespace NeighboursCommunitySystem.API.Controllers
 {
-    using Services;
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -9,11 +8,6 @@
 
     public class BaseApiController : ApiController
     {
-        protected readonly IProposalService proposalsService;
-
-        public BaseApiController(IProposalService proposalsService)
-        {
-            this.proposalsService = proposalsService;
-        }
+        // TODO: Extract all standard CRUD operations here.
     }
 }
