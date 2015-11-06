@@ -1,5 +1,4 @@
-﻿
-namespace NeighboursCommunitySystem.Services.Data.Contracts
+﻿namespace NeighboursCommunitySystem.Services.Data.Contracts
 {
     public interface IService
     {

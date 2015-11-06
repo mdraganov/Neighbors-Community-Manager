@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace NeighboursCommunitySystem.Services.Data.Contracts
+﻿namespace NeighboursCommunitySystem.Services.Data.Contracts
 {
-    interface IProposalsService
+    using Models;
+    using System.Linq;
+
+    public interface IProposalsService : IService
     {
+        IQueryable<Proposal> All();
+
     }
 }
