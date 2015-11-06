@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Server", "Server", "{6738DB4D-2691-464B-A360-D1543B117D0D}"
 EndProject
@@ -12,6 +12,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeighboursCommunitySystem.Models", "Data\NeighboursCommunitySystem.Models\NeighboursCommunitySystem.Models.csproj", "{189575A1-8AAF-4173-B025-B0016DB2FB8A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeighboursCommunitySystem.Data", "Data\NeighboursCommunitySystem.Data\NeighboursCommunitySystem.Data.csproj", "{47C20BDB-92F3-4B97-8950-E984B5526FAA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{6282126B-8C59-4C6C-933D-6FCF00202D2A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeighboursCommunitySystem.Services", "NeighboursCommunitySystem.Services\NeighboursCommunitySystem.Services.csproj", "{8DCAA82F-BB5E-43D9-A5DF-F748429B66C8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,6 +35,10 @@ Global
 		{47C20BDB-92F3-4B97-8950-E984B5526FAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{47C20BDB-92F3-4B97-8950-E984B5526FAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{47C20BDB-92F3-4B97-8950-E984B5526FAA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8DCAA82F-BB5E-43D9-A5DF-F748429B66C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DCAA82F-BB5E-43D9-A5DF-F748429B66C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8DCAA82F-BB5E-43D9-A5DF-F748429B66C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DCAA82F-BB5E-43D9-A5DF-F748429B66C8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -39,5 +47,6 @@ Global
 		{593EE4A7-E818-461A-9F23-881ADCE2744E} = {6738DB4D-2691-464B-A360-D1543B117D0D}
 		{189575A1-8AAF-4173-B025-B0016DB2FB8A} = {8959A6C4-0406-49E4-B1FD-4CFD5FC6FFB3}
 		{47C20BDB-92F3-4B97-8950-E984B5526FAA} = {8959A6C4-0406-49E4-B1FD-4CFD5FC6FFB3}
+		{8DCAA82F-BB5E-43D9-A5DF-F748429B66C8} = {6282126B-8C59-4C6C-933D-6FCF00202D2A}
 	EndGlobalSection
 EndGlobal

@@ -14,7 +14,7 @@
         public string Description { get; set; }
 
         [Required]
-        public ushort Approvals { get; set; } = 0;
+        public ushort Approvals { get; set; }
 
         [ForeignKey("Author")]
         public string AuthorID { get; set; }
