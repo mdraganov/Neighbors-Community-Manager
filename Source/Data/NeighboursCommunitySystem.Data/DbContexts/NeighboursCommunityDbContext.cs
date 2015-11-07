@@ -1,8 +1,8 @@
 ﻿namespace NeighboursCommunitySystem.Data.DbContexts
 {
-    using System.Data.Entity;
     using Microsoft.AspNet.Identity.EntityFramework;
     using Models;
+    using System.Data.Entity;
 
     public class NeighboursCommunityDbContext : IdentityDbContext<User>, INeighboursCommunityDbContext
     {
