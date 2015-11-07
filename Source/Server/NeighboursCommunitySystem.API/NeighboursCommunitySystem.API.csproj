@@ -215,7 +215,6 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ProposalsController.cs" />
-    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -264,13 +263,13 @@
       <Project>{189575a1-8aaf-4173-b025-b0016db2fb8a}</Project>
       <Name>NeighboursCommunitySystem.Models</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\NeighboursCommunitySystem.DtoModels\NeighboursCommunitySystem.DtoModels.csproj">
-      <Project>{3a6fb8a8-5870-4ae9-8a03-ae19b9ba8b7f}</Project>
-      <Name>NeighboursCommunitySystem.DtoModels</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Services\NeighboursCommunitySystem.Services.Data\NeighboursCommunitySystem.Services.Data.csproj">
       <Project>{d6070347-80e1-4676-bd08-13f1294bb67d}</Project>
       <Name>NeighboursCommunitySystem.Services.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NeighboursCommunitySystem.DtoModels\NeighboursCommunitySystem.DtoModels.csproj">
+      <Project>{3a6fb8a8-5870-4ae9-8a03-ae19b9ba8b7f}</Project>
+      <Name>NeighboursCommunitySystem.DtoModels</Name>
     </ProjectReference>
     <ProjectReference Include="..\NeighboursCommunitySystem.Server.Common\NeighboursCommunitySystem.Server.Common.csproj">
       <Project>{af39642d-4c37-49b2-b63d-0fb58d984fb8}</Project>
