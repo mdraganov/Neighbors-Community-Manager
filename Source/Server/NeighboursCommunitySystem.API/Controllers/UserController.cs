@@ -2,8 +2,8 @@
 {
     using System.Linq;
     using System.Web.Http;
-    using Models.Users;
     using Data.DbContexts;
+    using DtoModels.Users;
 
     public class UserController : ApiController
     {

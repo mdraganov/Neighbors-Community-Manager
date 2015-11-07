@@ -8,6 +8,7 @@
     using System.Threading.Tasks;
     using System.Web;
     using System.Web.Http;
+    using DtoModels.Accounts;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
     using Microsoft.AspNet.Identity.Owin;
@@ -15,10 +16,8 @@
     using Microsoft.Owin.Security.Cookies;
     using Microsoft.Owin.Security.OAuth;
     using Models;
-    using NeighboursCommunitySystem.Models;
     using Providers;
     using Results;
-    using Models.Accounts;
 
     [Authorize]
     [RoutePrefix("api/Account")]
