@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Server", "Server", "{6738DB4D-2691-464B-A360-D1543B117D0D}"
 EndProject
@@ -18,6 +18,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeighboursCommunitySystem.Services.Data", "Services\NeighboursCommunitySystem.Services.Data\NeighboursCommunitySystem.Services.Data.csproj", "{D6070347-80E1-4676-BD08-13F1294BB67D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeighboursCommunitySystem.Server.Common", "Server\NeighboursCommunitySystem.Server.Common\NeighboursCommunitySystem.Server.Common.csproj", "{AF39642D-4C37-49B2-B63D-0FB58D984FB8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeighboursCommunitySystem.DtoModels", "Server\NeighboursCommunitySystem.DtoModels\NeighboursCommunitySystem.DtoModels.csproj", "{3A6FB8A8-5870-4AE9-8A03-AE19B9BA8B7F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{AF39642D-4C37-49B2-B63D-0FB58D984FB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AF39642D-4C37-49B2-B63D-0FB58D984FB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AF39642D-4C37-49B2-B63D-0FB58D984FB8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A6FB8A8-5870-4AE9-8A03-AE19B9BA8B7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A6FB8A8-5870-4AE9-8A03-AE19B9BA8B7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A6FB8A8-5870-4AE9-8A03-AE19B9BA8B7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A6FB8A8-5870-4AE9-8A03-AE19B9BA8B7F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -55,5 +61,6 @@ Global
 		{47C20BDB-92F3-4B97-8950-E984B5526FAA} = {8959A6C4-0406-49E4-B1FD-4CFD5FC6FFB3}
 		{D6070347-80E1-4676-BD08-13F1294BB67D} = {F7D59415-B47B-4465-B037-2DF1BF8FFC88}
 		{AF39642D-4C37-49B2-B63D-0FB58D984FB8} = {6738DB4D-2691-464B-A360-D1543B117D0D}
+		{3A6FB8A8-5870-4AE9-8A03-AE19B9BA8B7F} = {6738DB4D-2691-464B-A360-D1543B117D0D}
 	EndGlobalSection
 EndGlobal

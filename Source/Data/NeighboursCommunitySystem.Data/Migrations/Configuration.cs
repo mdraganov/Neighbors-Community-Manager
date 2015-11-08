@@ -1,11 +1,11 @@
 namespace NeighboursCommunitySystem.Data.Migrations
 {
-    using System.Linq;
-    using System.Data.Entity.Migrations;
     using DbContexts;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
     using Models;
+    using System.Data.Entity.Migrations;
+    using System.Linq;
 
     public sealed class Configuration : DbMigrationsConfiguration<NeighboursCommunityDbContext>
     {
@@ -19,64 +19,66 @@ namespace NeighboursCommunitySystem.Data.Migrations
         protected override void Seed(NeighboursCommunityDbContext context)
         {
             // ADMIN BUTTON -> CONTROL PANNEL
-
-            var adminExists = context.Users.Any(x => x.UserName == "Administrator");
-            var accountantExists = context.Users.Any(x => x.UserName == "Accountant");
-
-            if (!adminExists)
+            if (!context.Users.Any())
             {
-                var roleStore = new RoleStore<IdentityRole>(context);
-                var roleManager = new RoleManager<IdentityRole>(roleStore);
+                var adminExists = context.Users.Any(x => x.UserName == "Administrator");
+                var accountantExists = context.Users.Any(x => x.UserName == "Accountant");
 
-                var userStore = new UserStore<User>(context);
-                var userManager = new UserManager<User>(userStore);
-
-                var adminRole = new IdentityRole { Name = "Administrator" };
-                roleManager.Create(adminRole);
-
-                var admin = new User()
+                if (!adminExists)
                 {
-                    UserName = "Administrator",
-                    Email = "archer@gmail.com",
-                    Id = "1",
-                    FirstName = "Archer",
-                    LastName = "Jr",
-                    PhoneNumber = "0887482921",
-                    ApartmentNumber = 1
-                };
+                    var roleStore = new RoleStore<IdentityRole>(context);
+                    var roleManager = new RoleManager<IdentityRole>(roleStore);
 
-                userManager.Create(admin, "123456");
-                userManager.AddToRole(admin.Id, "Administrator");
+                    var userStore = new UserStore<User>(context);
+                    var userManager = new UserManager<User>(userStore);
 
-                context.SaveChanges();
-            }
+                    var adminRole = new IdentityRole {Name = "Administrator"};
+                    roleManager.Create(adminRole);
 
-            if(!accountantExists)
-            {
-                var roleStore = new RoleStore<IdentityRole>(context);
-                var roleManager = new RoleManager<IdentityRole>(roleStore);
+                    var admin = new User()
+                    {
+                        UserName = "Administrator",
+                        Email = "archer@gmail.com",
+                        Id = "1",
+                        FirstName = "Archer",
+                        LastName = "Jr",
+                        PhoneNumber = "0887482921",
+                        ApartmentNumber = 1
+                    };
 
-                var userStore = new UserStore<User>(context);
-                var userManager = new UserManager<User>(userStore);
+                    userManager.Create(admin, "123456");
+                    userManager.AddToRole(admin.Id, "Administrator");
 
-                var accountantRole = new IdentityRole { Name = "Accountant" };
-                roleManager.Create(accountantRole);
+                    context.SaveChanges();
+                }
 
-                var accountant = new User()
+                if (!accountantExists)
                 {
-                    UserName = "Accountant",
-                    Email = "cyril@gmail.com",
-                    Id = "2",
-                    FirstName = "Cyril",
-                    LastName = "Figgis",
-                    PhoneNumber = "0883333312",
-                    ApartmentNumber = 2
-                };
+                    var roleStore = new RoleStore<IdentityRole>(context);
+                    var roleManager = new RoleManager<IdentityRole>(roleStore);
 
-                userManager.Create(accountant, "123456");
-                userManager.AddToRole(accountant.Id, "Accountant");
+                    var userStore = new UserStore<User>(context);
+                    var userManager = new UserManager<User>(userStore);
 
-                context.SaveChanges();
+                    var accountantRole = new IdentityRole {Name = "Accountant"};
+                    roleManager.Create(accountantRole);
+
+                    var accountant = new User()
+                    {
+                        UserName = "Accountant",
+                        Email = "cyril@gmail.com",
+                        Id = "2",
+                        FirstName = "Cyril",
+                        LastName = "Figgis",
+                        PhoneNumber = "0883333312",
+                        ApartmentNumber = 2
+                    };
+
+                    userManager.Create(accountant, "123456");
+                    userManager.AddToRole(accountant.Id, "Accountant");
+
+                    context.SaveChanges();
+                }
             }
         }
     }
