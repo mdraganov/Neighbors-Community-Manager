@@ -15,6 +15,8 @@
 
         public virtual IDbSet<Proposal> Proposals { get; set; }
 
+        public virtual IDbSet<Invitation> Invitations { get; set; }
+
         public static NeighboursCommunityDbContext Create()
         {
             return new NeighboursCommunityDbContext();

@@ -8,7 +8,6 @@
     using System.Threading.Tasks;
     using System.Web;
     using System.Web.Http;
-    using DtoModels.Accounts;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
     using Microsoft.AspNet.Identity.Owin;
@@ -18,6 +17,7 @@
     using Models;
     using Providers;
     using Results;
+    using DtoModels.Accounts;
 
     [Authorize]
     [RoutePrefix("api/Account")]

@@ -5,7 +5,7 @@
     using System.Threading.Tasks;
     using System.Web.Http;
     using System.Web.Http.Description;
-    using NeighboursCommunitySystem.Models;
+    using Models;
     using Services.Data.Contracts;
 
     public class ProposalsController : ApiController

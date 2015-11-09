@@ -49,3 +49,6 @@ Add **"WORKING"** prefix in front of each point that is currently under construc
  8. Get all Proposals which are Approved - **(GET) - api/proposal/approved**
  9. Get all Proposals which are Pending approval - **(GET) - api/proposal/pending**
 
+**IV. InvitationController**
+ 1. Send Invitation - **(POST) - api/invitation** with Body { "email@domain.com" }
+ 1. Get Invitation by ID - **(GET) - api/invitation/{id}**
