@@ -10,6 +10,8 @@
 
         IDbSet<Proposal> Proposals { get; set; }
 
+        IDbSet<Invitation> Invitations { get; set; }
+
         DbSet<TEntity> Set<TEntity>() where TEntity : class;
 
         DbEntityEntry<TEntity> Entry<TEntity>(TEntity entity) where TEntity : class;
