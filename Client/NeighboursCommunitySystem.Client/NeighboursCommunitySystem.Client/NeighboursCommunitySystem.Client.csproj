@@ -66,6 +66,8 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="data-handlers\users-data-handler.js" />
+    <Content Include="utils\templates.js" />
     <Content Include="packages.config" />
     <Content Include="sources\libs\bootstrap\Scripts\jquery-1.9.1.min.map" />
     <None Include="Web.Debug.config">
@@ -95,8 +97,10 @@
     <Content Include="sources\libs\bootstrap\Scripts\jquery-1.9.1.min.js" />
     <Content Include="sources\images\building.jpg" />
     <Content Include="sources\libs\script.js" />
+    <Content Include="sources\libs\sha1.js" />
     <Content Include="sources\styles\home-background.css" />
     <Content Include="sources\styles\home-navigation.css" />
+    <Content Include="utils\json-requester.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
