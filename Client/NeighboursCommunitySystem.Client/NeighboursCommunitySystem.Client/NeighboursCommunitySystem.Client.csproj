@@ -66,6 +66,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="controllers\usersController.js" />
     <Content Include="data-handlers\data-URL-connection.js" />
     <Content Include="data-handlers\users-data-handler.js" />
     <Content Include="utils\templates.js" />
