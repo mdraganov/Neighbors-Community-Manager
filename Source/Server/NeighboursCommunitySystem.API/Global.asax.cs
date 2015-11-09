@@ -8,9 +8,8 @@
     {
         protected void Application_Start()
         {
-            
             DatabaseConfig.Initialize();
-            AutoMapperConfig.RegisterMappings(Assembly.Load("NeighboursCommunitySystem.Server.Common"));
+            AutoMapperConfig.RegisterMappings(Assembly.Load("NeighboursCommunitySystem.Server.DtoModels"));
             GlobalConfiguration.Configure(WebApiConfig.Register);
         }
     }
