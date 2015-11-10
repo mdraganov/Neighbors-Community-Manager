@@ -2,7 +2,7 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-    public class CommunityRequestModel
+    public class CommunityRequestResponseModel
     {
         [Required]
         [MinLength(3, ErrorMessage = "Name cannot be shorthan then 3 characters.")]

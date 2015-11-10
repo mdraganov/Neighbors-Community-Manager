@@ -20,16 +20,28 @@
 
         public IHttpActionResult Get()
         {
-            var result = communities.All().ToList();
+            var result = communities
+                .All()
+                .Select(c => new CommunityRequestResponseModel()
+                {
+                    Name = c.Name,
+                    Description = c.Description
+                })
+                .ToList();
 
             return this.Ok(result);
         }
 
-        public IHttpActionResult Post(CommunityRequestModel model)
+        public IHttpActionResult Post(CommunityRequestResponseModel model)
         {
             if (!this.ModelState.IsValid)
             {
                 return this.BadRequest(this.ModelState);
+            }
+
+            if (communities.All().Any(c => c.Name == model.Name))
+            {
+                return this.BadRequest("Name is taken!");
             }
 
             var newCommunityId = communities.Add(model.Name, model.Description);
