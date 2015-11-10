@@ -3,7 +3,7 @@
     using System.Linq;
     using Models;
 
-    public interface ICommunitiesService
+    public interface ICommunitiesService : IService
     {
         IQueryable<Community> All();
 
