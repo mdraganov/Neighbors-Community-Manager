@@ -9,11 +9,13 @@
     {
         private ICollection<User> users;
         private ICollection<Tax> taxes;
+        private ICollection<Proposal> proposals;
 
         public Community()
         {
             this.users = new HashSet<User>();
             this.taxes = new HashSet<Tax>();
+            this.proposals = new HashSet<Proposal>();
         }
 
         public int Id { get; set; }
@@ -38,6 +40,12 @@
         {
             get { return this.taxes; }
             set { this.taxes = value; }
+        }
+
+        public virtual ICollection<Proposal> Proposals
+        {
+            get { return this.proposals; }
+            set { this.proposals = value; }
         }
     }
 }

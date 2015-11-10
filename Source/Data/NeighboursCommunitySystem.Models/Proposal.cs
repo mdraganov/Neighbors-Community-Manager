@@ -22,11 +22,14 @@
 
         public int Approvals { get; set; }
 
+        public int CommunityId { get; set; }
+
         [ForeignKey("Author")]
         public string AuthorId { get; set; }
 
         public virtual User Author { get; set; }
 
+        public virtual Community Community { get; set; }
 
         public virtual ICollection<ApprovableUser> UsersApproved
         {
