@@ -1,16 +1,17 @@
 ﻿namespace NeighboursCommunitySystem.DtoModels.Communities
 {
     using System.ComponentModel.DataAnnotations;
+    using Common;
 
     public class CommunityRequestResponseModel
     {
         [Required]
-        [MinLength(3, ErrorMessage = "Name cannot be shorthan then 3 characters.")]
-        [MaxLength(30, ErrorMessage = "Name cannot be shorthan then 30 characters.")]
+        [MinLength(CommunityConstants.CommunityNameLengthMin, ErrorMessage = CommunityConstants.ShortNameErrorMessage)]
+        [MaxLength(CommunityConstants.CommunityNameLengthMin, ErrorMessage = CommunityConstants.LongtNameErrorMessage)]
         public string Name { get; set; }
 
-        [MinLength(3)]
-        [MaxLength(300)]
+        [MinLength(CommunityConstants.DescriptionLengthMin, ErrorMessage = CommunityConstants.ShortDescriptionErrorMessage)]
+        [MaxLength(CommunityConstants.DescriptionLengthMax, ErrorMessage = CommunityConstants.LongDescriptionErrorMessage)]
         public string Description { get; set; }
     }
 }
