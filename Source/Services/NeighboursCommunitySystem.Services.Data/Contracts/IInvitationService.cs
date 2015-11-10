@@ -2,11 +2,8 @@
 {
     using Models;
     using RestSharp;
-    using System;
-    using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
+    using System.Net;
 
     public interface IInvitationService : IService
     {
@@ -18,6 +15,6 @@
 
         int Remove(string email);
 
-        RestResponse SendInvitation(string email);
+        string SendInvitation(string email);
     }
 }

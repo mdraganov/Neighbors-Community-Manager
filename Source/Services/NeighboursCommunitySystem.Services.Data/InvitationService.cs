@@ -14,6 +14,7 @@
     using Server.Common.Generators;
     using Server.Common.Constants;
     using System.IO;
+    using System.Net;
 
     public class InvitationService : IInvitationService
     {
@@ -58,25 +59,25 @@
             throw new NotImplementedException();
         }
 
-        public RestResponse SendInvitation(string email)
+        public string SendInvitation(string email)
         {
             // Check if there is an invitation sent to this email already.
             var invitation = this.invitations.All().Where(x => x.Email == email).FirstOrDefault();
-            RestResponse response;
+            var statusDescription = string.Empty;
 
             if (invitation == null)
             {
                 var token = this.GenerateVerificationToken();
                 this.InsertInvitationDataInDatabase(email, token);
-                response = this.SendEmail(email, token);
+                statusDescription = this.SendEmail(email, token);
             }
             else
             {
                 var token = this.DecryptStringFromBytes(invitation.VerificationToken, invitation.DecryptionKey, invitation.InitializationVector);
-                response = this.SendEmail(email, token);
+                statusDescription = this.SendEmail(email, token);
             }
 
-            return response;
+            return statusDescription;
         }
 
         private string GenerateVerificationToken()
@@ -90,7 +91,19 @@
             return result;
         }
 
-        private RestResponse SendEmail(string email, string token)
+        private void InsertInvitationDataInDatabase(string email, string token)
+        {
+            var encryptedData = this.EncryptToken(email, token);
+
+            if (encryptedData.Email == null)
+            {
+                throw new ArgumentNullException("Encryption not successful.");
+            }
+
+            this.Add(encryptedData);
+        }
+
+        private string SendEmail(string email, string token)
         {
             var registrationURI = "https://neighbourscms/register/";
             var message = String.Format(RegistrationInvitationMessage,
@@ -111,19 +124,7 @@
             request.AddParameter("text", message);
             request.Method = Method.POST;
 
-            return (RestResponse)client.Execute(request);
-        }
-
-        private void InsertInvitationDataInDatabase(string email, string token)
-        {
-            var encryptedData = this.EncryptToken(email, token);
-
-            if (encryptedData.Email == null)
-            {
-                throw new ArgumentNullException("Encryption not successful.");
-            }
-
-            this.Add(encryptedData);
+            return ((RestResponse)client.Execute(request)).StatusDescription;
         }
 
         private Invitation EncryptToken(string email, string token)

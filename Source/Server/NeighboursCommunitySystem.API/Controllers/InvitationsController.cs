@@ -2,6 +2,7 @@
 {
     using Models;
     using Services.Data.Contracts;
+    using System.ComponentModel.DataAnnotations;
     using System.Data.Entity;
     using System.Linq;
     using System.Net;
@@ -31,15 +32,13 @@
         [HttpPost]
         public IHttpActionResult SendInvitation([FromBody]string email)
         {
-            if(ModelState.IsValid)
-            {
-                var response = this.invitationService.SendInvitation(email);
-                return this.Ok(response);
-            }
-            else
+            if (email.Length > 150 || email.Length < 3)
             {
                 return this.StatusCode(HttpStatusCode.NotAcceptable);
             }
+
+            var response = this.invitationService.SendInvitation(email);
+            return this.Ok(response);
         }
     }
 }
