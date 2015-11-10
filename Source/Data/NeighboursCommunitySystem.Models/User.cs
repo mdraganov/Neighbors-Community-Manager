@@ -13,11 +13,13 @@
     {
         private ICollection<Tax> taxes;
         private ICollection<Proposal> proposals;
+        private ICollection<Community> communities;
 
         public User()
         {
             this.taxes = new HashSet<Tax>();
             this.proposals = new HashSet<Proposal>();
+            this.communities = new HashSet<Community>();
         }
 
         public User(string userName)
@@ -49,6 +51,12 @@
         {
             get { return this.proposals; }
             set { this.proposals = value; }
+        }
+
+        public virtual ICollection<Community> Communities
+        {
+            get { return this.communities; }
+            set { this.communities = value; }
         }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager, string authenticationType)
