@@ -12,12 +12,14 @@
     public class User : IdentityUser
     {
         private ICollection<Tax> taxes;
+        private ICollection<Vote> votes;
         private ICollection<Proposal> proposals;
         private ICollection<Community> communities;
 
         public User()
         {
             this.taxes = new HashSet<Tax>();
+            this.votes = new HashSet<Vote>();
             this.proposals = new HashSet<Proposal>();
             this.communities = new HashSet<Community>();
         }
@@ -57,6 +59,12 @@
         {
             get { return this.communities; }
             set { this.communities = value; }
+        }
+
+        public virtual ICollection<Vote> Votes
+        {
+            get { return this.votes; }
+            set { this.votes = value; }
         }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager, string authenticationType)

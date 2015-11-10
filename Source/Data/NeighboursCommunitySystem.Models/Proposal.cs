@@ -6,11 +6,11 @@
 
     public class Proposal
     {
-        private ICollection<ApprovableUser> usersApproved;
+        private ICollection<Vote> votes;
 
         public Proposal()
         {
-            this.usersApproved = new HashSet<ApprovableUser>();
+            this.votes = new HashSet<Vote>();
         }
 
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -20,24 +20,18 @@
         [MaxLength(200)]
         public string Description { get; set; }
 
-        public int Approvals { get; set; }
-
         public int CommunityId { get; set; }
-
-        [ForeignKey("Author")]
+        
         public string AuthorId { get; set; }
 
         public virtual User Author { get; set; }
 
         public virtual Community Community { get; set; }
 
-        public virtual ICollection<ApprovableUser> UsersApproved
+        public virtual ICollection<Vote> Votes
         {
-            get { return this.usersApproved; }
-            set { this.usersApproved = value; }
-        }
-
-
-        // TODO: Add "IsApproved" property that is not mapped to the database and returns TRUE if more than 75% of all users had voted "YES" for the proposal.
+            get { return this.votes; }
+            set { this.votes = value; }
+        }        
     }
 }
