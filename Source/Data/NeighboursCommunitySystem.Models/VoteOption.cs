@@ -15,7 +15,7 @@
         public int Id { get; set; }
 
         [Required]
-        public string Option { get; set; }
+        public Options Option { get; set; }
 
         public virtual ICollection<Vote> Votes
         {

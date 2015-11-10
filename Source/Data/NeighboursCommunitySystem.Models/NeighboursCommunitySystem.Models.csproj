@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="ApprovableUser.cs" />
     <Compile Include="Community.cs" />
+    <Compile Include="Options.cs" />
     <Compile Include="Proposal.cs" />
     <Compile Include="RegistrationInvitation.cs" />
     <Compile Include="User.cs" />
