@@ -14,7 +14,7 @@
 
         IQueryable<Invitation> GetByEmail(string email);
 
-        int Add(string email, string verificationToken);
+        int Add(Invitation invitationData);
 
         int Remove(string email);
 

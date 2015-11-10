@@ -2,6 +2,7 @@
 {
     using Contracts;
     using System;
+    using System.Security.Cryptography;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
@@ -12,9 +13,13 @@
     using RestSharp.Authenticators;
     using Server.Common.Generators;
     using Server.Common.Constants;
+    using System.IO;
 
     public class InvitationService : IInvitationService
     {
+        private const string RegistrationInvitationMessage = "You can register for the Neighbours Community Management System on the following link --> {1} {0}Use this verification token in order to authorize your credentials --> {2}";
+        private const string MailgunAuthenticationApi = "api";
+        private const string MailgunAuthenticationKey = "key-1c6386f513a843fd177faf43651e104d";
         private readonly IRepository<Invitation> invitations;
 
         public InvitationService(IRepository<Invitation> invitations)
@@ -32,12 +37,14 @@
             throw new NotImplementedException();
         }
 
-        public int Add(string email, string verificationToken)
+        public int Add(Invitation invitationData)
         {
             var invitation = new Invitation()
             {
-                Email = email,
-                VerificationToken = verificationToken
+                Email = invitationData.Email,
+                VerificationToken = invitationData.VerificationToken,
+                DecryptionKey = invitationData.DecryptionKey,
+                InitializationVector = invitationData.InitializationVector,
             };
 
             this.invitations.Add(invitation);
@@ -53,28 +60,23 @@
 
         public RestResponse SendInvitation(string email)
         {
-            var verificationToken = this.GenerateVerificationToken();
-            var registrationURI = "https://facebook.com/";
-            var message = String.Format(
-                "You can register for the Neighbours Community Management System on the following link --> {1} {0}Use this verification token in order to authorize your credentials --> {2}", 
-                Environment.NewLine, 
-                registrationURI, 
-                verificationToken);
+            // Check if there is an invitation sent to this email already.
+            var invitation = this.invitations.All().Where(x => x.Email == email).FirstOrDefault();
+            RestResponse response;
 
-            RestClient client = new RestClient();
-            client.BaseUrl = new System.Uri("https://api.mailgun.net/v3");
-            client.Authenticator = new HttpBasicAuthenticator("api", "key-1c6386f513a843fd177faf43651e104d");
+            if (invitation == null)
+            {
+                var token = this.GenerateVerificationToken();
+                this.InsertInvitationDataInDatabase(email, token);
+                response = this.SendEmail(email, token);
+            }
+            else
+            {
+                var token = this.DecryptStringFromBytes(invitation.VerificationToken, invitation.DecryptionKey, invitation.InitializationVector);
+                response = this.SendEmail(email, token);
+            }
 
-            RestRequest request = new RestRequest();
-            request.AddParameter("domain", "sandboxaa5c7c0d21a84aa1b0b2dd81fa9b283c.mailgun.org", ParameterType.UrlSegment);
-            request.Resource = "{domain}/messages";
-            request.AddParameter("from", "Neighbours Community Management System <postmaster@sandboxaa5c7c0d21a84aa1b0b2dd81fa9b283c.mailgun.org>");
-            request.AddParameter("to", String.Format("<{0}>", email));
-            request.AddParameter("subject", "Hello, Neighbour!");
-            request.AddParameter("text", message);
-            request.Method = Method.POST;
-
-            return (RestResponse)client.Execute(request);
+            return response;
         }
 
         private string GenerateVerificationToken()
@@ -84,6 +86,164 @@
             var result = generator.GetString(
                 Constants.VerificationTokenMinLength,
                 Constants.VerificationTokenMaxLength);
+
+            return result;
+        }
+
+        private RestResponse SendEmail(string email, string token)
+        {
+            var registrationURI = "https://neighbourscms/register/";
+            var message = String.Format(RegistrationInvitationMessage,
+                Environment.NewLine,
+                registrationURI,
+                token);
+
+            RestClient client = new RestClient();
+            client.BaseUrl = new Uri("https://api.mailgun.net/v3");
+            client.Authenticator = new HttpBasicAuthenticator(MailgunAuthenticationApi, MailgunAuthenticationKey);
+
+            RestRequest request = new RestRequest();
+            request.Resource = "{domain}/messages";
+            request.AddParameter("domain", "sandboxaa5c7c0d21a84aa1b0b2dd81fa9b283c.mailgun.org", ParameterType.UrlSegment);
+            request.AddParameter("from", "Neighbours Community Management System <postmaster@sandboxaa5c7c0d21a84aa1b0b2dd81fa9b283c.mailgun.org>");
+            request.AddParameter("to", String.Format("<{0}>", email));
+            request.AddParameter("subject", "Hello, Neighbour!");
+            request.AddParameter("text", message);
+            request.Method = Method.POST;
+
+            return (RestResponse)client.Execute(request);
+        }
+
+        private void InsertInvitationDataInDatabase(string email, string token)
+        {
+            var encryptedData = this.EncryptToken(email, token);
+
+            if (encryptedData.Email == null)
+            {
+                throw new ArgumentNullException("Encryption not successful.");
+            }
+
+            this.Add(encryptedData);
+        }
+
+        private Invitation EncryptToken(string email, string token)
+        {
+            var invitationData = new Invitation();
+
+            try
+            {
+                // Create a new instance of the RijndaelManaged class.
+                // This generates a new key and initialization vector (IV).
+                using (RijndaelManaged rijndael = new RijndaelManaged())
+                {
+                    rijndael.GenerateKey();
+                    rijndael.GenerateIV();
+
+                    // Encrypt the string to an array of bytes.
+                    byte[] encrypted = EncryptStringToBytes(token, rijndael.Key, rijndael.IV);
+
+                    invitationData.Email = email;
+                    invitationData.VerificationToken = encrypted;
+                    invitationData.DecryptionKey = rijndael.Key;
+                    invitationData.InitializationVector = rijndael.IV;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("An error occured while encrypting the token: {0}", e.Message);
+            }
+
+            return invitationData;
+        }
+
+        private byte[] EncryptStringToBytes(string token, byte[] Key, byte[] IV)
+        {
+            // Check arguments.
+            if (token == null || token.Length <= 0)
+            {
+                throw new ArgumentNullException("plainText");
+            }
+            if (Key == null || Key.Length <= 0)
+            {
+                throw new ArgumentNullException("Key");
+            }
+            if (IV == null || IV.Length <= 0)
+            {
+                throw new ArgumentNullException("IV");
+            }
+
+            byte[] encrypted;
+
+            // Create a RijndaelManaged object with the specified key and IV.
+            using (RijndaelManaged rijAlg = new RijndaelManaged())
+            {
+                rijAlg.Key = Key;
+                rijAlg.IV = IV;
+
+                // Create a decrytor to perform the stream transform.
+                ICryptoTransform encryptor = rijAlg.CreateEncryptor(rijAlg.Key, rijAlg.IV);
+
+                // Create the streams used for encryption.
+                using (MemoryStream msEncrypt = new MemoryStream())
+                {
+                    using (CryptoStream csEncrypt = new CryptoStream(msEncrypt, encryptor, CryptoStreamMode.Write))
+                    {
+                        using (StreamWriter swEncrypt = new StreamWriter(csEncrypt))
+                        {
+                            //Write all data to the stream.
+                            swEncrypt.Write(token);
+                        }
+                        encrypted = msEncrypt.ToArray();
+                    }
+                }
+            }
+
+            // Return the encrypted bytes from the memory stream.
+            return encrypted;
+        }
+
+        private string DecryptStringFromBytes(byte[] tokenCipher, byte[] Key, byte[] IV)
+        {
+            // Check arguments.
+            if (tokenCipher == null || tokenCipher.Length <= 0)
+            {
+                throw new ArgumentNullException("TokenCipher cannot be NULL.");
+            }
+            if (Key == null || Key.Length <= 0)
+            {
+                throw new ArgumentNullException("Key cannot be NULL");
+            }
+            if (IV == null || IV.Length <= 0)
+            {
+                throw new ArgumentNullException("IV");
+            }
+
+            // Declare the string used to hold the decrypted text.
+            string result = null;
+
+            // Create an RijndaelManaged object with the specified key and IV.
+            using (RijndaelManaged rijAlg = new RijndaelManaged())
+            {
+                rijAlg.Key = Key;
+                rijAlg.IV = IV;
+
+                // Create a decrytor to perform the stream transform.
+                ICryptoTransform decryptor = rijAlg.CreateDecryptor(rijAlg.Key, rijAlg.IV);
+
+                // Create the streams used for decryption.
+                using (MemoryStream msDecrypt = new MemoryStream(tokenCipher))
+                {
+                    using (CryptoStream csDecrypt = new CryptoStream(msDecrypt, decryptor, CryptoStreamMode.Read))
+                    {
+                        using (StreamReader srDecrypt = new StreamReader(csDecrypt))
+                        {
+                            // Read the decrypted bytes from the decrypting stream
+                            // and place them in a string.
+                            result = srDecrypt.ReadToEnd();
+                        }
+                    }
+                }
+            }
 
             return result;
         }

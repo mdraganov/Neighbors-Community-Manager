@@ -4,6 +4,7 @@
     using Services.Data.Contracts;
     using System.Data.Entity;
     using System.Linq;
+    using System.Net;
     using System.Threading.Tasks;
     using System.Web.Http;
     using System.Web.Http.Description;
@@ -30,8 +31,15 @@
         [HttpPost]
         public IHttpActionResult SendInvitation([FromBody]string email)
         {
-            var response = this.invitationService.SendInvitation(email);
-            return this.Ok(response);
+            if(ModelState.IsValid)
+            {
+                var response = this.invitationService.SendInvitation(email);
+                return this.Ok(response);
+            }
+            else
+            {
+                return this.StatusCode(HttpStatusCode.NotAcceptable);
+            }
         }
     }
 }

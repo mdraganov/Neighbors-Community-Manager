@@ -10,12 +10,20 @@
         public int ID { get; set; }
 
         [Required]
+        [MaxLength(150, ErrorMessage = "Email length cannot exceed 150 characters.{0}")]
         [EmailAddress(ErrorMessage = "Invalid email address")]
         public string Email { get; set; }
 
         [Required]
-        [MinLength(36, ErrorMessage = "The verification token cannot have length less than 32 characters")]
-        [MaxLength(40, ErrorMessage = "The verification token cannot have length greater than 40 characters")]
-        public string VerificationToken { get; set; }
+        [MaxLength(8000)]
+        public byte[] VerificationToken { get; set; }
+
+        [Required]
+        [MaxLength(8000)]
+        public byte[] DecryptionKey { get; set; }
+
+        [Required]
+        [MaxLength(8000)]
+        public byte[] InitializationVector { get; set; }
     }
 }

@@ -37,7 +37,7 @@ namespace NeighboursCommunitySystem.Data.Migrations
 
                     var admin = new User()
                     {
-                        UserName = "Administrator",
+                        UserName = "archer@gmail.com",
                         Email = "archer@gmail.com",
                         Id = "1",
                         FirstName = "Archer",
@@ -65,7 +65,7 @@ namespace NeighboursCommunitySystem.Data.Migrations
 
                     var accountant = new User()
                     {
-                        UserName = "Accountant",
+                        UserName = "cyril@gmail.com",
                         Email = "cyril@gmail.com",
                         Id = "2",
                         FirstName = "Cyril",
