@@ -69,6 +69,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Common\NeighboursCommunitSystem.Common\NeighboursCommunitySystem.Common.csproj">
+      <Project>{b38013f2-b210-4974-a9e2-0eb4ed75d4be}</Project>
+      <Name>NeighboursCommunitySystem.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\NeighboursCommunitySystem.Models\NeighboursCommunitySystem.Models.csproj">
       <Project>{189575a1-8aaf-4173-b025-b0016db2fb8a}</Project>
       <Name>NeighboursCommunitySystem.Models</Name>

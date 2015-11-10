@@ -1,9 +1,10 @@
 ﻿namespace NeighboursCommunitySystem.Models
 {
-    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
+
+    using NeighboursCommunitySystem.Common;
 
     public class Community
     {
@@ -21,13 +22,13 @@
         public int Id { get; set; }
 
         [Required]
-        [MinLength(3, ErrorMessage = "Name cannot be shorthan then 3 characters.")]
-        [MaxLength(30, ErrorMessage = "Name cannot be shorthan then 30 characters.")]
+        [MinLength(CommunityConstants.CommunityNameLengthMin)]
+        [MaxLength(CommunityConstants.CommunityNameLengthMin)]
         [Index(IsUnique = true)]
         public string Name { get; set; }
 
-        [MinLength(3)]
-        [MaxLength(300)]
+        [MinLength(CommunityConstants.DescriptionLengthMin)]
+        [MaxLength(CommunityConstants.DescriptionLengthMax)]
         public string Description { get; set; }
 
         public virtual ICollection<User> Users
