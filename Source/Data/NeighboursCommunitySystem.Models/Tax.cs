@@ -45,6 +45,10 @@
             }
         }
 
+        public int CommunityId { get; set; }
+
+        public virtual Community Community { get; set; }
+
         public virtual ICollection<User> Users
         {
             get { return this.users; }
