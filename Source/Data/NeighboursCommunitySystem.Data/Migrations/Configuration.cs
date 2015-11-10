@@ -21,6 +21,8 @@ namespace NeighboursCommunitySystem.Data.Migrations
             // ADMIN BUTTON -> CONTROL PANNEL
             if (!context.Users.Any())
             {
+                //TODO: If you entered this if then there are no users. Why the two checks below?
+
                 var adminExists = context.Users.Any(x => x.UserName == "Administrator");
                 var accountantExists = context.Users.Any(x => x.UserName == "Accountant");
 
