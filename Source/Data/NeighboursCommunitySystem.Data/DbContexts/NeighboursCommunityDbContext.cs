@@ -17,6 +17,12 @@
 
         public virtual IDbSet<Invitation> Invitations { get; set; }
 
+        public virtual IDbSet<Community> Communities { get; set; }
+
+        public virtual IDbSet<Vote> Votes { get; set; }
+
+        public virtual IDbSet<VoteOption> VotingOptions { get; set; }
+
         public static NeighboursCommunityDbContext Create()
         {
             return new NeighboursCommunityDbContext();

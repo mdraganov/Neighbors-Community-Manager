@@ -79,6 +79,15 @@ namespace NeighboursCommunitySystem.Data.Migrations
 
                     context.SaveChanges();
                 }
+
+                
+            }
+
+            if (!context.VotingOptions.Any())
+            {
+                context.VotingOptions.Add(new VoteOption { Option = Options.For });
+                context.VotingOptions.Add(new VoteOption { Option = Options.Against });
+                context.VotingOptions.Add(new VoteOption { Option = Options.Abstention });
             }
         }
     }
