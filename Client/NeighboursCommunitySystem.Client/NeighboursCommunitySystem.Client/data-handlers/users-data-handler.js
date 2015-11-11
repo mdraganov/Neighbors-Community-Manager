@@ -1,6 +1,8 @@
 ﻿var usersData = (function () {
     var LOCAL_STORAGE_USERNAME_KEY = 'signed-in-user-username',
-    LOCAL_STORAGE_AUTHKEY_KEY = 'signed-in-user-auth-key';
+    LOCAL_STORAGE_AUTHKEY_KEY = 'signed-in-user-auth-key',
+    LOCAL_STORAGE_AUTHKEY_KEY_TOKEN = 'signed-in-user-auth-key-token';
+    LOCAL_STORAGE_AUTHKEY_KEY_TOKEN_TYPE = 'signed-in-user-auth-key-token-type';
 
     var serverURLforUser = URL + 'api/user';
 
@@ -8,7 +10,8 @@
     function register(user) {
         var reqUser = {
             username: user.username,
-            passHash: CryptoJS.SHA1(user.username + user.password).toString()
+            password: CryptoJS.SHA1(user.username + user.password).toString()
+
         };
 
         return jsonRequester.post(serverURLforUser, {
@@ -43,7 +46,7 @@
         var options = {
             data: user,
             headers: {
-                'x-auth-key': localStorage.getItem(LOCAL_STORAGE_AUTHKEY_KEY)
+                'Authorization': localStorage.getItem(LOCAL_STORAGE_AUTHKEY_KEY_TOKEN_TYPE)+' '+localStorage.getItem(LOCAL_STORAGE_AUTHKEY_KEY_TOKEN)
             }
         };
         return jsonRequester.delete(serverURLforUser + id, options)
@@ -57,7 +60,7 @@
         var options = {
             data: user,
             headers: {
-                'x-auth-key': localStorage.getItem(LOCAL_STORAGE_AUTHKEY_KEY)
+                'Authorization': localStorage.getItem(LOCAL_STORAGE_AUTHKEY_KEY_TOKEN_TYPE) + ' ' + localStorage.getItem(LOCAL_STORAGE_AUTHKEY_KEY_TOKEN)
             }
         };
         return jsonRequester.delete(serverURLforUser + email, options)
@@ -89,21 +92,25 @@
               return res.result;
           });
     }
+
     function signIn(user) {
         var reqUser = {
             username: user.username,
-            passHash: CryptoJS.SHA1(user.username + user.password).toString()
+            password: CryptoJS.SHA1(user.username + user.password).toString(),
+            grant_type:password
         };
 
         var options = {
             data: reqUser
         };
 
-        return jsonRequester.put(serverURLforUser+'/auth', options)
+        return jsonRequester.put(URL + '/token', options)
           .then(function (resp) {
               var user = resp.result;
-              localStorage.setItem(LOCAL_STORAGE_USERNAME_KEY, user.username);
+              localStorage.setItem(LOCAL_STORAGE_USERNAME_KEY, user.userName);
               localStorage.setItem(LOCAL_STORAGE_AUTHKEY_KEY, user.authKey);
+              localStorage.setItem(LOCAL_STORAGE_AUTHKEY_KEY_TOKEN, user.access_token);
+              localStorage.setItem(LOCAL_STORAGE_AUTHKEY_KEY_TOKEN_TYPE, user.token_type);
               return user;
           });
     }
@@ -112,6 +119,8 @@
         var promise = new Promise(function (resolve, reject) {
             localStorage.removeItem(LOCAL_STORAGE_USERNAME_KEY);
             localStorage.removeItem(LOCAL_STORAGE_AUTHKEY_KEY);
+            localStorage.removeItem(LOCAL_STORAGE_AUTHKEY_KEY_TOKEN);
+            localStorage.removeItem(LOCAL_STORAGE_AUTHKEY_KEY_TOKEN_TYPE);
             resolve();
         });
         return promise;
