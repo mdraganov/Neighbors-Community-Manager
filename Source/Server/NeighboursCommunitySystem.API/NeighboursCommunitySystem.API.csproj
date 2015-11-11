@@ -261,6 +261,10 @@
     <Content Include="Scripts\jquery-2.1.4.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Common\NeighboursCommunitSystem.Common\NeighboursCommunitySystem.Common.csproj">
+      <Project>{b38013f2-b210-4974-a9e2-0eb4ed75d4be}</Project>
+      <Name>NeighboursCommunitySystem.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Data\NeighboursCommunitySystem.Data\NeighboursCommunitySystem.Data.csproj">
       <Project>{47c20bdb-92f3-4b97-8950-e984b5526faa}</Project>
       <Name>NeighboursCommunitySystem.Data</Name>

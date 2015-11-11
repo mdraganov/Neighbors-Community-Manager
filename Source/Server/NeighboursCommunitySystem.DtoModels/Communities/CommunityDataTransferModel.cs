@@ -7,7 +7,7 @@
     {
         [Required]
         [MinLength(CommunityConstants.CommunityNameLengthMin, ErrorMessage = CommunityConstants.ShortNameErrorMessage)]
-        [MaxLength(CommunityConstants.CommunityNameLengthMin, ErrorMessage = CommunityConstants.LongNameErrorMessage)]
+        [MaxLength(CommunityConstants.CommunityNameLengthMax, ErrorMessage = CommunityConstants.LongNameErrorMessage)]
         public string Name { get; set; }
 
         [MinLength(CommunityConstants.DescriptionLengthMin, ErrorMessage = CommunityConstants.ShortDescriptionErrorMessage)]

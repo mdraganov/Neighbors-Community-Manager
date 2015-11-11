@@ -8,6 +8,7 @@
     using Services.Data.Contracts;
     using DtoModels.Communities;
     using Models;
+    using Common;
 
     public class CommunitiesController : ApiController
     {
@@ -41,7 +42,7 @@
 
             if (communities.All().Any(c => c.Name == model.Name))
             {
-                return this.BadRequest("Name is taken!");
+                return this.BadRequest(GlobalConstants.UniqueNameErrorMessage);
             }
 
             var newCommunityId = communities.Add(model.Name, model.Description);

@@ -21,9 +21,9 @@
         public int Id { get; set; }
 
         [Required]
-        [MinLength(CommunityConstants.CommunityNameLengthMin)]
-        [MaxLength(CommunityConstants.CommunityNameLengthMin)]
         [Index(IsUnique = true)]
+        [MinLength(CommunityConstants.CommunityNameLengthMin)]
+        [MaxLength(CommunityConstants.CommunityNameLengthMax)]
         public string Name { get; set; }
 
         [MinLength(CommunityConstants.DescriptionLengthMin)]
