@@ -3,11 +3,11 @@
     using System.ComponentModel.DataAnnotations;
     using Common;
 
-    public class CommunityRequestResponseModel
+    public class CommunityDataTransferModel
     {
         [Required]
         [MinLength(CommunityConstants.CommunityNameLengthMin, ErrorMessage = CommunityConstants.ShortNameErrorMessage)]
-        [MaxLength(CommunityConstants.CommunityNameLengthMin, ErrorMessage = CommunityConstants.LongtNameErrorMessage)]
+        [MaxLength(CommunityConstants.CommunityNameLengthMin, ErrorMessage = CommunityConstants.LongNameErrorMessage)]
         public string Name { get; set; }
 
         [MinLength(CommunityConstants.DescriptionLengthMin, ErrorMessage = CommunityConstants.ShortDescriptionErrorMessage)]

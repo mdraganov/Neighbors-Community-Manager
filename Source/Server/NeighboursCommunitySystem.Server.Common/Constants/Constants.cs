@@ -2,7 +2,6 @@
 {
     public class Constants
     {
-        public const int VerificationTokenMinLength = 36;
-        public const int VerificationTokenMaxLength = 40;
+        public const int VerificationTokenLength = 40;
     }
 }

@@ -1,9 +1,9 @@
 ﻿namespace NeighboursCommunitySystem.DtoModels.Proposals
 
 {
-    using NeighboursCommunitySystem.Models;
+    using Models;
 
-    public class ProposalDetailedResponseModel
+    public class ProposalDataTransferModel
     {
         public User Author { get; set; }
 

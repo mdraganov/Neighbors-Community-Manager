@@ -1,9 +1,9 @@
 ﻿namespace NeighboursCommunitySystem.DtoModels.Users
 {
-    using NeighboursCommunitySystem.Models;
+    using Models;
     using System.Collections.Generic;
 
-    public class UserDetailedResponseModel
+    public class UserDetailedDataTransferModel
     {
         public string Email { get; set; }
 

@@ -2,9 +2,9 @@
 {
     using System;
     using System.Collections.Generic;
-    using NeighboursCommunitySystem.Models;
+    using Models;
 
-    public class TaxDetailedResponseModel
+    public class TaxDataTransferModel
     {
         public string Description { get; set; }
 

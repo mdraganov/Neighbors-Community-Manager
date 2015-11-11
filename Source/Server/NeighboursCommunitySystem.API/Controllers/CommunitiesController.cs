@@ -22,7 +22,7 @@
         {
             var result = communities
                 .All()
-                .Select(c => new CommunityRequestResponseModel()
+                .Select(c => new CommunityDataTransferModel()
                 {
                     Name = c.Name,
                     Description = c.Description
@@ -32,7 +32,7 @@
             return this.Ok(result);
         }
 
-        public IHttpActionResult Post(CommunityRequestResponseModel model)
+        public IHttpActionResult Post(CommunityDataTransferModel model)
         {
             if (!this.ModelState.IsValid)
             {

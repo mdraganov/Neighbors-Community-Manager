@@ -1,9 +1,8 @@
 ﻿namespace NeighboursCommunitySystem.Services.Data.Contracts
 {
     using Models;
-    using RestSharp;
+    using DtoModels.Accounts;
     using System.Linq;
-    using System.Net;
 
     public interface IInvitationService : IService
     {
@@ -15,6 +14,6 @@
 
         int Remove(string email);
 
-        string SendInvitation(string email);
+        string SendInvitation(AccountInvitationDataTransferModel invitationModel);
     }
 }

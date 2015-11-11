@@ -1,5 +1,6 @@
 ﻿namespace NeighboursCommunitySystem.Models
 {
+    using Common;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
@@ -10,20 +11,20 @@
         public int ID { get; set; }
 
         [Required]
-        [MaxLength(150, ErrorMessage = "Email length cannot exceed 150 characters.{0}")]
-        [EmailAddress(ErrorMessage = "Invalid email address")]
+        [MaxLength(150, ErrorMessage = CommunityConstants.EmailValidationLengthErrorMessage)]
+        [EmailAddress(ErrorMessage = CommunityConstants.EmailValidationErrorMessage)]
         public string Email { get; set; }
 
         [Required]
-        [MaxLength(8000)]
+        [MaxLength(1000)]
         public byte[] VerificationToken { get; set; }
 
         [Required]
-        [MaxLength(8000)]
+        [MaxLength(1000)]
         public byte[] DecryptionKey { get; set; }
 
         [Required]
-        [MaxLength(8000)]
+        [MaxLength(1000)]
         public byte[] InitializationVector { get; set; }
     }
 }

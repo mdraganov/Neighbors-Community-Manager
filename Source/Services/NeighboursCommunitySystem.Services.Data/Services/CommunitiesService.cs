@@ -1,13 +1,12 @@
-﻿namespace NeighboursCommunitySystem.Services.Data
+﻿namespace NeighboursCommunitySystem.Services.Data.Services
 {
     using System;
     using System.Linq;
-    using Services.Data.Contracts;
     using Models;
+    using Contracts;
     using NeighboursCommunitySystem.Data.Repositories;
-    
-    // Under construction.
 
+    // Under construction.
     public class CommunitiesService : ICommunitiesService
     {
         private readonly IRepository<Community> communities;

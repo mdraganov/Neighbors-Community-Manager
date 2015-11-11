@@ -1,4 +1,4 @@
-﻿namespace NeighboursCommunitySystem.Services.Data
+﻿namespace NeighboursCommunitySystem.Services.Data.Services
 {
     using Contracts;
     using NeighboursCommunitySystem.Data.Repositories;

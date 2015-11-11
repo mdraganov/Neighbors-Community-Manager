@@ -1,8 +1,8 @@
 ﻿namespace NeighboursCommunitySystem.API.Controllers
 {
     using Models;
+    using DtoModels.Accounts;
     using Services.Data.Contracts;
-    using System.ComponentModel.DataAnnotations;
     using System.Data.Entity;
     using System.Linq;
     using System.Net;
@@ -27,17 +27,16 @@
             return this.Ok(invitations);
         }
 
-
-        // Route "api/invitations", METHOD(POST), ContentType:application/json, Body { "email@domain.com" }
+        // Route "api/invitations", METHOD(POST), ContentType:application/json, Body { "email":"email@domain.com", "communityKey" : "BGSFSL164" }
         [HttpPost]
-        public IHttpActionResult SendInvitation([FromBody]string email)
+        public IHttpActionResult SendInvitation(AccountInvitationDataTransferModel invitationModel)
         {
-            if (email.Length > 150 || email.Length < 3)
+            if(!ModelState.IsValid)
             {
                 return this.StatusCode(HttpStatusCode.NotAcceptable);
             }
 
-            var response = this.invitationService.SendInvitation(email);
+            var response = this.invitationService.SendInvitation(invitationModel);
             return this.Ok(response);
         }
     }

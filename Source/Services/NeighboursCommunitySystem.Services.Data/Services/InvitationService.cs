@@ -1,4 +1,4 @@
-﻿namespace NeighboursCommunitySystem.Services.Data
+﻿namespace NeighboursCommunitySystem.Services.Data.Services
 {
     using Contracts;
     using System;
@@ -15,12 +15,11 @@
     using Server.Common.Constants;
     using System.IO;
     using System.Net;
+    using Common;
+    using DtoModels.Accounts;
 
     public class InvitationService : IInvitationService
     {
-        private const string RegistrationInvitationMessage = "You can register for the Neighbours Community Management System on the following link --> {1} {0}Use this verification token in order to authorize your credentials --> {2}";
-        private const string MailgunAuthenticationApi = "api";
-        private const string MailgunAuthenticationKey = "key-1c6386f513a843fd177faf43651e104d";
         private readonly IRepository<Invitation> invitations;
 
         public InvitationService(IRepository<Invitation> invitations)
@@ -59,22 +58,25 @@
             throw new NotImplementedException();
         }
 
-        public string SendInvitation(string email)
+        public string SendInvitation(AccountInvitationDataTransferModel invitationModel)
         {
             // Check if there is an invitation sent to this email already.
-            var invitation = this.invitations.All().Where(x => x.Email == email).FirstOrDefault();
+            var invitation = this.invitations.All().Where(x => x.Email == invitationModel.Email).FirstOrDefault();
             var statusDescription = string.Empty;
 
             if (invitation == null)
             {
-                var token = this.GenerateVerificationToken();
-                this.InsertInvitationDataInDatabase(email, token);
-                statusDescription = this.SendEmail(email, token);
+                var token = this.GenerateVerificationToken() + invitationModel.CommunityKey;
+                this.InsertInvitationDataInDatabase(invitationModel.Email, token);
+                statusDescription = this.SendEmail(invitationModel.Email, token);
             }
             else
             {
-                var token = this.DecryptStringFromBytes(invitation.VerificationToken, invitation.DecryptionKey, invitation.InitializationVector);
-                statusDescription = this.SendEmail(email, token);
+                var token = this.DecryptStringFromBytes(
+                    invitation.VerificationToken, 
+                    invitation.DecryptionKey, 
+                    invitation.InitializationVector) + invitationModel.CommunityKey;
+                statusDescription = this.SendEmail(invitationModel.Email, token);
             }
 
             return statusDescription;
@@ -84,9 +86,7 @@
         {
             var generator = new RandomStringGenerator();
 
-            var result = generator.GetString(
-                Constants.VerificationTokenMinLength,
-                Constants.VerificationTokenMaxLength);
+            var result = generator.GetString(Constants.VerificationTokenLength);
 
             return result;
         }
@@ -106,14 +106,14 @@
         private string SendEmail(string email, string token)
         {
             var registrationURI = "https://neighbourscms/register/";
-            var message = String.Format(RegistrationInvitationMessage,
+            var message = String.Format(CommunityConstants.RegistrationInvitationMessage,
                 Environment.NewLine,
                 registrationURI,
                 token);
 
             RestClient client = new RestClient();
             client.BaseUrl = new Uri("https://api.mailgun.net/v3");
-            client.Authenticator = new HttpBasicAuthenticator(MailgunAuthenticationApi, MailgunAuthenticationKey);
+            client.Authenticator = new HttpBasicAuthenticator(CommunityConstants.MailgunAuthenticationApi, CommunityConstants.MailgunAuthenticationKey);
 
             RestRequest request = new RestRequest();
             request.Resource = "{domain}/messages";

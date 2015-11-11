@@ -1,6 +1,6 @@
 ﻿namespace NeighboursCommunitySystem.DtoModels.Users
 {
-    public class UserBriefResponseModel
+    public class UserBriefDataTransferModel
     {
         public string FullName { get; set; }
     }
