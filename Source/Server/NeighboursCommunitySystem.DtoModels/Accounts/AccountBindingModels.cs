@@ -61,6 +61,14 @@
         [Required]
         [Display(Name = "Appartament Number")]
         public byte ApartmentNumber { get; set; }
+
+        [Required]
+        [Display(Name = "Administrator Role")]
+        public bool isAdmin { get; set; }
+
+        [Required]
+        [Display(Name = "Accountant Role")]
+        public bool isAccountant { get; set; }
     }
 
     public class RegisterExternalBindingModel

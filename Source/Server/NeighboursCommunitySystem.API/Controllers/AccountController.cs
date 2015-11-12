@@ -336,12 +336,21 @@
                 LastName = model.LastName,
                 ApartmentNumber = model.ApartmentNumber
             };
-
+            
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);
-
+            
             if (!result.Succeeded)
             {
                 return GetErrorResult(result);
+            }
+
+            if (model.isAdmin)
+            {
+                UserManager.AddToRole(user.Id, "Administrator");
+            }
+            else if (model.isAccountant)
+            {
+                UserManager.AddToRole(user.Id, "Accountant");
             }
 
             return Ok();
