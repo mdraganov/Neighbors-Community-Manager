@@ -33,13 +33,14 @@
             return this.Ok(result);
         }
 
+        [Authorize(Roles = "Administrator")]
         public IHttpActionResult Post(CommunityDataTransferModel model)
         {
             if (!this.ModelState.IsValid)
             {
                 return this.BadRequest(this.ModelState);
             }
-
+            
             if (communities.All().Any(c => c.Name == model.Name))
             {
                 return this.BadRequest(GlobalConstants.UniqueNameErrorMessage);

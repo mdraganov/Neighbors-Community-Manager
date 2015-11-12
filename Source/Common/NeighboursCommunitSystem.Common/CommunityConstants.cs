@@ -6,6 +6,7 @@
         public const int CommunityNameLengthMax = 30;
         public const string ShortNameErrorMessage = "Community name length should be equal to or more than 3 characters.";
         public const string LongNameErrorMessage = "Community name length should be equal to or shorter than 30 characters.";
+        public const string NewCommunityAuthorizationMessage = "Only administrators can create new communities.";
 
         public const int DescriptionLengthMin = 3;
         public const int DescriptionLengthMax = 300;
