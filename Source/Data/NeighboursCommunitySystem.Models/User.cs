@@ -11,24 +11,26 @@
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class User : IdentityUser
     {
-        private ICollection<Tax> taxes;
         private ICollection<Vote> votes;
         private ICollection<Proposal> proposals;
+        private ICollection<TaxPayment> payments;
         private ICollection<Community> communities;
 
         public User()
         {
-            this.taxes = new HashSet<Tax>();
             this.votes = new HashSet<Vote>();
             this.proposals = new HashSet<Proposal>();
+            this.payments = new HashSet<TaxPayment>();
             this.communities = new HashSet<Community>();
         }
 
         public User(string userName)
             : base(userName)
         {
-            this.taxes = new HashSet<Tax>();
+            this.votes = new HashSet<Vote>();
             this.proposals = new HashSet<Proposal>();
+            this.payments = new HashSet<TaxPayment>();
+            this.communities = new HashSet<Community>();
         }
 
         [Required]
@@ -42,13 +44,7 @@
         [Required]
         [Index(IsUnique = true)]
         public byte ApartmentNumber { get; set; }
-
-        public virtual ICollection<Tax> Taxes
-        {
-            get { return this.taxes; }
-            set { this.taxes = value; }
-        }
-
+        
         public virtual ICollection<Proposal> Proposals
         {
             get { return this.proposals; }
@@ -65,6 +61,12 @@
         {
             get { return this.votes; }
             set { this.votes = value; }
+        }
+
+        public virtual ICollection<TaxPayment> Payments
+        {
+            get { return this.payments; }
+            set { this.payments = value; }
         }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager, string authenticationType)

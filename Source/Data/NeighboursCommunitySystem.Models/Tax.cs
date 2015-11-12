@@ -7,25 +7,27 @@
 
     public class Tax
     {
-        private ICollection<User> users;
+        private ICollection<TaxPayment> payments;
         private DateTime deadline;
 
         public Tax()
         {
-            this.users = new HashSet<User>();
+            this.payments = new HashSet<TaxPayment>();
         }
 
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         [Required]
+        [MinLength(1)]
+        [MaxLength(30)]
+        public string Name { get; set; }
+
         [MaxLength(200)]
         public string Description { get; set; }
 
         [Required]
         public decimal Price { get; set; }
-
-        public bool IsPaid { get; set; }
 
         [Required]
         public DateTime Deadline
@@ -49,10 +51,10 @@
 
         public virtual Community Community { get; set; }
 
-        public virtual ICollection<User> Users
+        public virtual ICollection<TaxPayment> Payments
         {
-            get { return this.users; }
-            set { this.users = (HashSet<User>)value; }
+            get { return this.payments; }
+            set { this.payments = value; }
         }
     }
 }
