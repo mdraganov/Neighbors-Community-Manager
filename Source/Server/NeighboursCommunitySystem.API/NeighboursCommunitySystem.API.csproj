@@ -221,6 +221,7 @@
     <Compile Include="Controllers\CommunitiesController.cs" />
     <Compile Include="Controllers\ProposalsController.cs" />
     <Compile Include="Controllers\InvitationsController.cs" />
+    <Compile Include="Controllers\TaxesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
