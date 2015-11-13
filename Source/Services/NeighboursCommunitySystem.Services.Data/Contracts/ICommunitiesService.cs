@@ -9,6 +9,8 @@
 
         IQueryable<Community> ByCurrentUser();
 
+        Community GetById(int id);
+
         int Add(string Name, string Description = null);
     }
 }

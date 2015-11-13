@@ -18,16 +18,21 @@
 
         public int Add(string name, string description = null)
         {
-            var newCommunity = new Community()
+            var community = new Community
             {
                 Name = name,
                 Description = description
             };
 
-            communities.Add(newCommunity);
+            communities.Add(community);
             communities.SaveChanges();
 
-            return newCommunity.Id;
+            return community.Id;
+        }
+
+        public Community GetById(int id)
+        {
+            return communities.GetById(id);
         }
 
         public IQueryable<Community> All()

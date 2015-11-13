@@ -24,5 +24,21 @@
 
             return result;
         }
+
+        public int Add(string name, decimal price, DateTime deadline, int communityId)
+        {
+            var tax = new Tax
+            {
+                Name = name,
+                Price = price,
+                Deadline = deadline,
+                CommunityId = communityId
+            };
+
+            taxes.Add(tax);
+            taxes.SaveChanges();
+
+            return tax.Id;
+        }
     }
 }
