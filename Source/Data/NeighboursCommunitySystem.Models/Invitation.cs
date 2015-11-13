@@ -1,8 +1,9 @@
 ﻿namespace NeighboursCommunitySystem.Models
 {
-    using Common;
+    
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
+    using Common;
 
     public class Invitation
     {
