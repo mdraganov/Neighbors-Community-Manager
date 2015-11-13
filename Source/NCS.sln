@@ -25,6 +25,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{AE18C3
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeighboursCommunitySystem.Common", "Common\NeighboursCommunitSystem.Common\NeighboursCommunitySystem.Common.csproj", "{B38013F2-B210-4974-A9E2-0EB4ED75D4BE}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{0D53B9B3-9983-448E-90FA-002F7EF08EDA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeighboursCommunityManager.UI", "UI\NeighboursCommunityManager.UI\NeighboursCommunityManager.UI.csproj", "{C212C00D-7EC6-422E-A09E-656B981C1DBF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -59,6 +63,10 @@ Global
 		{B38013F2-B210-4974-A9E2-0EB4ED75D4BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B38013F2-B210-4974-A9E2-0EB4ED75D4BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B38013F2-B210-4974-A9E2-0EB4ED75D4BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C212C00D-7EC6-422E-A09E-656B981C1DBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C212C00D-7EC6-422E-A09E-656B981C1DBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C212C00D-7EC6-422E-A09E-656B981C1DBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C212C00D-7EC6-422E-A09E-656B981C1DBF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -71,5 +79,6 @@ Global
 		{AF39642D-4C37-49B2-B63D-0FB58D984FB8} = {6738DB4D-2691-464B-A360-D1543B117D0D}
 		{3A6FB8A8-5870-4AE9-8A03-AE19B9BA8B7F} = {6738DB4D-2691-464B-A360-D1543B117D0D}
 		{B38013F2-B210-4974-A9E2-0EB4ED75D4BE} = {AE18C304-75B5-4521-9A97-A2972E111703}
+		{C212C00D-7EC6-422E-A09E-656B981C1DBF} = {0D53B9B3-9983-448E-90FA-002F7EF08EDA}
 	EndGlobalSection
 EndGlobal
