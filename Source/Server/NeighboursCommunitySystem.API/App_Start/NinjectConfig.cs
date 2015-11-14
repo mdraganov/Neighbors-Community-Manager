@@ -71,7 +71,8 @@ namespace NeighboursCommunitySystem.API.App_Start
 
             kernel.Bind(k => k
                 .From("NeighboursCommunitySystem.Services.Data")
-                .SelectAllTypes()
+                .SelectAllClasses()
+                .InheritedFrom(typeof(IService<>))
                 .BindDefaultInterface());
         }
     }
