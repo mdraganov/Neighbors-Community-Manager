@@ -12,14 +12,10 @@
     public class TaxesController : ApiController
     {
         private readonly ITaxesService taxes;
-        private readonly ICommunitiesService communities;
-        private readonly int currentCommunityId;
 
-        public TaxesController(ITaxesService taxes, ICommunitiesService communities)
+        public TaxesController(ITaxesService taxes)
         {
             this.taxes = taxes;
-            this.communities = communities;
-            // this.currentCommunityId = ;
         }
 
         [Authorize(Roles = "DbAdmin")]
