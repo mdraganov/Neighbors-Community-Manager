@@ -33,7 +33,7 @@
             return this.Ok(result);
         }
 
-        [Authorize(Roles = "Administrator")]
+        [Authorize(Roles = "DbAdmin,Administrator")]
         public IHttpActionResult Post(CommunityDataTransferModel model)
         {
             if (!this.ModelState.IsValid)

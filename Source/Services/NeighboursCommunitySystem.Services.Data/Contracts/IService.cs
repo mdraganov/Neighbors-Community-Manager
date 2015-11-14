@@ -1,6 +1,9 @@
 ﻿namespace NeighboursCommunitySystem.Services.Data.Contracts
 {
-    public interface IService
+    using System.Linq;
+
+    public interface IService<T>
     {
+        IQueryable<T> All();
     }
 }

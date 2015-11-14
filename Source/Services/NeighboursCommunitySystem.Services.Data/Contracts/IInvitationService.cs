@@ -4,10 +4,8 @@
     using DtoModels.Accounts;
     using System.Linq;
 
-    public interface IInvitationService : IService
+    public interface IInvitationService : IService<Invitation>
     {
-        IQueryable<Invitation> All();
-
         IQueryable<Invitation> GetByEmail(string email);
 
         int Add(Invitation invitationData);

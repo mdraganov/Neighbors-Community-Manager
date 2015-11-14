@@ -3,9 +3,8 @@
     using Models;
     using System.Linq;
 
-    public interface IProposalService : IService
+    public interface IProposalService : IService<Proposal>
     {
-        IQueryable<Proposal> All();
 
     }
 }

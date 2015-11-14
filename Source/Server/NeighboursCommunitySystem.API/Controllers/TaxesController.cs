@@ -7,24 +7,53 @@
     using DtoModels.Communities;
     using Models;
     using Common;
+    using DtoModels.Taxes;
 
     public class TaxesController : ApiController
     {
         private readonly ITaxesService taxes;
-        private readonly int currentCommunityId;
 
         public TaxesController(ITaxesService taxes)
         {
             this.taxes = taxes;
-            // this.currentCommunityId = ;
         }
 
-        [Authorize(Roles = "Administrator,Accountant")]
+        [Authorize(Roles = "DbAdmin")]
         public IHttpActionResult Get()
         {
-            var result = taxes.GetByCommunityId(currentCommunityId);
+            var allTaxes = taxes.All().Select(t => new TaxDataTransferModel
+            {
+                Name = t.Name,
+                Description = t.Description,
+                Deadline = t.Deadline,
+                Price = t.Price
+            })
+            .ToList();
 
-            return this.Ok(result);
+            return this.Ok(allTaxes);
+        }
+
+        [Authorize(Roles = "DbAdmin,Administrator,Accountant")]
+        public IHttpActionResult Get(int communityId)
+        {
+            var communityTaxes = taxes.GetByCommunityId(communityId).Select(t => new TaxDataTransferModel
+            {
+                Name = t.Name,
+                Description = t.Description,
+                Deadline = t.Deadline,
+                Price = t.Price
+            })
+            .ToList();
+
+            return this.Ok(communityTaxes);
+        }
+
+        [Authorize(Roles = "DbAdmin,Administrator")]
+        public IHttpActionResult Post(int communityId, TaxDataTransferModel model)
+        {
+            int taxId = taxes.AddByCommunityId(communityId, model);
+
+            return this.Ok(taxId);
         }
     }
 }
