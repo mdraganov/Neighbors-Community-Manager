@@ -264,6 +264,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Images\Background.jpg" />
+    <Content Include="Images\Background.png" />
     <Content Include="index.html" />
     <None Include="Properties\PublishProfiles\NeighboursCommunity.pubxml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
@@ -318,6 +320,7 @@
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
