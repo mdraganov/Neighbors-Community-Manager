@@ -1,6 +1,8 @@
 ﻿namespace NeighboursCommunitySystem.Services.Data.Contracts
 {
-    public interface IUsersService : IService
+    using NeighboursCommunitySystem.Models;
+
+    public interface IUsersService : IService<User>
     {
     }
 }

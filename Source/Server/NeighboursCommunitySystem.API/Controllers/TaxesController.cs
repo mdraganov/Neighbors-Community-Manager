@@ -7,6 +7,7 @@
     using DtoModels.Communities;
     using Models;
     using Common;
+    using DtoModels.Taxes;
 
     public class TaxesController : ApiController
     {
@@ -21,19 +22,41 @@
             // this.currentCommunityId = ;
         }
 
-        [Authorize(Roles = "Administrator,Accountant")]
+        [Authorize(Roles = "DbAdmin")]
         public IHttpActionResult Get()
         {
-            var result = taxes.GetByCommunityId(currentCommunityId);
+            var allTaxes = taxes.All().Select(t => new TaxDataTransferModel
+            {
+                Name = t.Name,
+                Description = t.Description,
+                Deadline = t.Deadline,
+                Price = t.Price
+            })
+            .ToList();
 
-            return this.Ok(result);
+            return this.Ok(allTaxes);
         }
 
-        [Authorize(Roles = "Administrator")]
-        public IHttpActionResult Post()
+        [Authorize(Roles = "DbAdmin,Administrator,Accountant")]
+        public IHttpActionResult Get(int communityId)
         {
-            var community = communities.GetById(currentCommunityId);
-            
+            var communityTaxes = taxes.GetByCommunityId(communityId).Select(t => new TaxDataTransferModel
+            {
+                Name = t.Name,
+                Description = t.Description,
+                Deadline = t.Deadline,
+                Price = t.Price
+            })
+            .ToList();
+
+            return this.Ok(communityTaxes);
+        }
+
+        [Authorize(Roles = "DbAdmin,Administrator")]
+        public IHttpActionResult Post(int communityId)
+        {
+            var community = communities.GetById(communityId);
+
 
             return this.Ok();
         }

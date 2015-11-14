@@ -18,11 +18,14 @@
             this.taxes = taxes;
         }
 
+        public IQueryable<Tax> All()
+        {
+            return taxes.All();
+        }
+
         public IQueryable<Tax> GetByCommunityId(int Id)
         {
-            var result = taxes.All().Where(t => t.Community.Id == Id);
-
-            return result;
+            return taxes.All().Where(t => t.Community.Id == Id);
         }
 
         public int Add(string name, decimal price, DateTime deadline, int communityId)

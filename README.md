@@ -28,14 +28,16 @@ Add **"WORKING"** prefix in front of each point that is currently under construc
 (Example: Tax - "Elevator electricity and support" -> Ivan, Gosho, Marto, Mariyan have not paid)
 
 **II. TaxController**
+Working - Under construction
 
- 1. Create Tax - **(POST) - api/tax**
- 2. Update Tax by ID - **(PUT) - api/tax/{id}**
- 3. Delete Tax by ID - **(DELETE) - api/tax/{id}**
- 4. Get Tax by ID - **(GET) - api/tax/{id}**
- 5. Get all Taxes - **(GET) - api/tax**
- 6. Get all Taxes which are available for payment - **(GET) - api/taxes/available**
- 7. Get all Taxes which are not-available for payment (their deadline has passed) - **(GET) - api/taxes/expired**
+ 1. Create Tax by community ID - **(POST) - api/tax/{id}** *Authorization: DbAdmin, Administrator*
+ 2. Update Tax by ID - **(PUT) - api/tax/{id}** *Authorization: DbAdmin, Administrator*
+ 3. Delete Tax by ID - **(DELETE) - api/tax/{id}** *Authorization: DbAdmin, Administrator*
+ 4. Get Tax by ID - **(GET) - api/tax/{id}** *Authorization: DbAdmin, Administrator*
+ 5. Get all Taxes - **(GET) - api/tax** *Authorization: DbAdmin*
+ 6. Get all Taxes by community ID - **(GET) - api/tax/{id}** *Authorization: Administrator, Accountant*
+ 7. Get all Taxes which are available for payment by community ID - **(GET) - api/taxes/available/{id}**
+ 8. Get all Taxes which are not-available for payment (their deadline has passed) for current community - **(GET) - api/taxes/expired/{id}**
 
 **III. ProposalController**
 
