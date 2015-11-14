@@ -8,6 +8,7 @@
     using Contracts;
     using Models;
     using NeighboursCommunitySystem.Data.Repositories;
+    using DtoModels.Taxes;
 
     public class TaxesService : ITaxesService
     {
@@ -28,13 +29,14 @@
             return taxes.All().Where(t => t.Community.Id == Id);
         }
 
-        public int Add(string name, decimal price, DateTime deadline, int communityId)
+        public int AddByCommunityId(int communityId, TaxDataTransferModel model)
         {
             var tax = new Tax
             {
-                Name = name,
-                Price = price,
-                Deadline = deadline,
+                Name = model.Name,
+                Price = model.Price,
+                Deadline = model.Deadline,
+                Description = model.Description,
                 CommunityId = communityId
             };
 

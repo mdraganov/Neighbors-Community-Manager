@@ -53,12 +53,11 @@
         }
 
         [Authorize(Roles = "DbAdmin,Administrator")]
-        public IHttpActionResult Post(int communityId)
+        public IHttpActionResult Post(int communityId, TaxDataTransferModel model)
         {
-            var community = communities.GetById(communityId);
+            int taxId = taxes.AddByCommunityId(communityId, model);
 
-
-            return this.Ok();
+            return this.Ok(taxId);
         }
     }
 }

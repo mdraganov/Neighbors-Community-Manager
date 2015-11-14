@@ -5,6 +5,8 @@
 
     public interface ITaxesService : IService<Tax>
     {
-        IQueryable<Tax> GetByCommunityId(int Id);
+        IQueryable<Tax> GetByCommunityId(int id);
+
+        int AddByCommunityId(int id);
     }
 }
