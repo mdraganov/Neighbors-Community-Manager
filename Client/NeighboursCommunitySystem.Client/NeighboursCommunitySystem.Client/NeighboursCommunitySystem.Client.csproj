@@ -69,6 +69,7 @@
     <Content Include="controllers\usersController.js" />
     <Content Include="data-handlers\data-URL-connection.js" />
     <Content Include="data-handlers\users-data-handler.js" />
+    <Content Include="register.html" />
     <Content Include="utils\templates.js" />
     <Content Include="packages.config" />
     <Content Include="sources\libs\bootstrap\Scripts\jquery-1.9.1.min.map" />
