@@ -41,5 +41,13 @@
 
             return this.Ok(taxId);
         }
+
+        [Authorize(Roles = "DbAdmin,Administrator")]
+        public IHttpActionResult Delete(int id)
+        {
+            taxes.DeleteById(id);
+
+            return this.Ok();
+        }
     }
 }

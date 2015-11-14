@@ -9,5 +9,7 @@
         IQueryable<Tax> GetByCommunityId(int id);
 
         int AddByCommunityId(int id, TaxDataTransferModel model);
+
+        void DeleteById(int Id);
     }
 }
