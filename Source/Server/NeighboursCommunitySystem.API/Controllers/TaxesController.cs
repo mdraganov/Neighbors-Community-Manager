@@ -24,10 +24,10 @@
         }
 
         [Authorize(Roles = "DbAdmin,Administrator,Accountant")]
-        public IHttpActionResult Get(int communityId)
+        public IHttpActionResult Get(int id)
         {
             var communityTaxes = taxes
-                                .GetByCommunityId(communityId)
+                                .GetByCommunityId(id)
                                 .ProjectTo<TaxDataTransferModel>()
                                 .ToList();
 
@@ -35,9 +35,9 @@
         }
 
         [Authorize(Roles = "DbAdmin,Administrator")]
-        public IHttpActionResult Post(int communityId, TaxDataTransferModel model)
+        public IHttpActionResult Post(int id, TaxDataTransferModel model)
         {
-            int taxId = taxes.AddByCommunityId(communityId, model);
+            int taxId = taxes.AddByCommunityId(id, model);
 
             return this.Ok(taxId);
         }

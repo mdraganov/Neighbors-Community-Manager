@@ -24,6 +24,11 @@
             return taxes.All();
         }
 
+        public void DeleteById(int id)
+        {
+            taxes.Delete(taxes.GetById(id));
+        }
+
         public IQueryable<Tax> GetByCommunityId(int Id)
         {
             return taxes.All().Where(t => t.Community.Id == Id);
