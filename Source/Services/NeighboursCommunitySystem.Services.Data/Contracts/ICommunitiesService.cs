@@ -3,8 +3,10 @@
     using System.Linq;
     using Models;
 
-    public interface ICommunitiesService : IService<Community>
+    public interface ICommunitiesService : IService
     {
+        IQueryable<Community> All();
+
         IQueryable<Community> ByCurrentUser();
 
         Community GetById(int id);

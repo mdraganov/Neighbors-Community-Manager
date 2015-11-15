@@ -1,11 +1,12 @@
 ﻿namespace NeighboursCommunitySystem.Services.Data.Contracts
 {
-    using Models;
-    using DtoModels.Accounts;
     using System.Linq;
+    using DtoModels.Accounts;
+    using Models;
 
-    public interface IInvitationService : IService<Invitation>
+    public interface IInvitationService : IService
     {
+        IQueryable<Invitation> All();
         IQueryable<Invitation> GetByEmail(string email);
 
         int Add(Invitation invitationData);

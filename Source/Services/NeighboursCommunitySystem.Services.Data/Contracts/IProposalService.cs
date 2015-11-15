@@ -3,9 +3,9 @@
     using System.Linq;
     using Models;
 
-    public interface IProposalService : IService<Proposal>
+    public interface IProposalService : IService
     {
-
+        IQueryable<Proposal> All();
         void VoteUp(int id);
         void VoteDown(int id);
 

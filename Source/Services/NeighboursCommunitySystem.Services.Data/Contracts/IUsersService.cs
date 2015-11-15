@@ -2,7 +2,7 @@
 {
     using NeighboursCommunitySystem.Models;
 
-    public interface IUsersService : IService<User>
+    public interface IUsersService
     {
     }
 }
