@@ -1,9 +1,9 @@
 ﻿namespace NeighboursCommunitySystem.Data.Repositories
 {
-    using DbContexts;
     using System;
     using System.Data.Entity;
     using System.Linq;
+    using DbContexts;
 
     public class EfGenericRepository<T> : IRepository<T>
         where T : class

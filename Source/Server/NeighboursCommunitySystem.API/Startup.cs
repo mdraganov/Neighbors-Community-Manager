@@ -15,7 +15,6 @@ namespace NeighboursCommunitySystem.API
         {
             ConfigureAuth(app);
 
-            ConfigureAuth(app);
             // Branch the pipeline here for requests that start with "/signalr"
             app.Map("/signalr", map =>
             {
